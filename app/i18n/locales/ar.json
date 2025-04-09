@@ -1,0 +1,37 @@
+{
+  "app": {
+    "title": "نبض الخضرة",
+    "subtitle": "متتبع رعاية النباتات",
+    "language": "اللغة"
+  },
+  "plant": {
+    "add": "إضافة نبات",
+    "edit": "تعديل النبات",
+    "name": "اسم النبات",
+    "namePlaceholder": "أدخل اسم النبات",
+    "wateringFrequency": "تكرار الري (أيام)",
+    "wateringPlaceholder": "أدخل عدد الأيام",
+    "sunlight": "احتياجات أشعة الشمس",
+    "sunlightPlaceholder": "مثال: ضوء غير مباشر",
+    "brightIndirect": "ضوء غير مباشر",
+    "imageUrl": "رابط الصورة",
+    "imagePlaceholder": "أدخل رابط الصورة",
+    "waterEvery": "الري كل {{days}} أيام",
+    "lastWatered": "آخر ري",
+    "nextWatering": "الري القادم",
+    "addedOn": "تمت الإضافة في {{date}}",
+    "waterNow": "ري الآن",
+    "delete": "حذف النبات",
+    "waterConfirm": "هل تريد ري هذا النبات؟",
+    "deleteConfirm": "هل تريد حذف هذا النبات؟",
+    "waterSuccess": "تم ري النبات بنجاح!"
+  },
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "delete": "حذف"
+  }
+}

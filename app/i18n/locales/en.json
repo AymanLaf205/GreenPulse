@@ -1,0 +1,49 @@
+{
+  "app": {
+    "title": "GreenPulse",
+    "subtitle": "Plant Care Tracker",
+    "language": "Language"
+  },
+  "plant": {
+    "add": "Add Plant",
+    "edit": "Edit Plant",
+    "name": "Plant Name",
+    "namePlaceholder": "Enter plant name",
+    "wateringFrequency": "Watering Frequency (days)",
+    "wateringPlaceholder": "Enter number of days",
+    "sunlight": "Sunlight Needs",
+    "sunlightPlaceholder": "Select sunlight needs",
+    "sunlightOptions": {
+      "brightDirect": "Bright direct",
+      "brightIndirect": "Bright indirect",
+      "mediumLight": "Medium light",
+      "lowLight": "Low light",
+      "shade": "Full shade"
+    },
+    "imageUrl": "Image URL",
+    "imagePlaceholder": "Enter image URL",
+    "waterEvery": "Water every {{days}} days",
+    "lastWatered": "Last watered",
+    "nextWatering": "Next watering",
+    "addedOn": "Added on {{date}}",
+    "waterNow": "Water Now",
+    "delete": "Delete Plant",
+    "waterConfirm": "Water this plant?",
+    "deleteConfirm": "Delete this plant?",
+    "waterSuccess": "Plant watered successfully!",
+    "validation": {
+      "required": "This field is required",
+      "nameRequired": "Plant name is required",
+      "wateringRequired": "Watering frequency is required",
+      "sunlightRequired": "Sunlight needs is required"
+    }
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "edit": "Edit",
+    "add": "Add",
+    "delete": "Delete"
+  }
+}
