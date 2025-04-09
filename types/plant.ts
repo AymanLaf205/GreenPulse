@@ -1,8 +1,10 @@
 export interface Plant {
-  id: string;
+  id?: string;
   name: string;
   wateringFrequency: number;
-  lastWatered?: string;
-  dateAdded: string;
-  image?: string;
+  sunlight: string;
+  image: string;
+  lastWatered?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
