@@ -120,7 +120,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
           <div className="flex items-center gap-1" dir={dir}>
             <Calendar className="h-3 w-3 text-green-500 flex-shrink-0" />
             <span className="truncate">
-              {t('plant.lastWatered')}: {new Date(plant.lastWatered || plant.dateAdded).toLocaleDateString()}
+              {t('plant.lastWatered')}: {new Date(plant.lastWatered || plant.createdAt).toLocaleDateString()}
             </span>
           </div>
           <div className="flex items-center gap-1" dir={dir}>
