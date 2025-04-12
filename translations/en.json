@@ -37,6 +37,8 @@
     }
   },
   "actions": {
+    "add": "Add",
+    "edit": "Edit",
     "save": "Save",
     "cancel": "Cancel",
     "confirm": "Confirm",

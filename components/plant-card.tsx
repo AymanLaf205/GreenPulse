@@ -248,9 +248,11 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
                   setIsEditing(false);
                   setErrors({});
                 }}>
-                  {t('plant.cancel')}
+                  {t('actions.cancel')}
                 </Button>
-                <Button onClick={handleUpdate}>{t('plant.save')}</Button>
+                <Button onClick={handleUpdate}>
+                  {t('actions.save')}
+                </Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -276,7 +278,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
               {t('actions.cancel')}
             </Button>
             <Button onClick={handleWatering}>
-              {t('actions.confirm')}
+              {t('plant.confirm')}
             </Button>
           </div>
         </DialogContent>
@@ -289,10 +291,10 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
           </DialogHeader>
           <div className="flex justify-end gap-4 pt-4">
             <Button variant="outline" onClick={() => setIsDeleteConfirmOpen(false)}>
-              {t('actions.cancel')}
+              {t('plant.cancel')}
             </Button>
             <Button variant="destructive" onClick={handleDelete}>
-              {t('actions.delete')}
+              {t('plant.delete')}
             </Button>
           </div>
         </DialogContent>

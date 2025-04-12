@@ -1,4 +1,5 @@
 export interface Translations {
+  [key: string]: any;
   app: {
     title: string;
     subtitle: string;
@@ -24,6 +25,7 @@ export interface Translations {
     nextWatering: string;
     waterEvery: string;
     sunlightOptions: {
+      [key: string]: string;
       brightDirect: string;
       brightIndirect: string;
       mediumLight: string;
