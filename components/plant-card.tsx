@@ -60,14 +60,19 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
     setIsEditing(false);
   };
 
-  const handleWater = () => {
-    const updatedPlant = {
-      ...plant,
-      lastWatered: new Date().toISOString()
-    };
-    onUpdate(updatedPlant);
-    setIsWaterConfirmOpen(false);
-    toast.success(t('plant.waterSuccess'));
+  const handleWatering = async () => {
+    try {
+      const updatedPlant: Plant = {
+        ...plant,
+        lastWatered: new Date().toISOString(), // Convert to ISO string
+      };
+      await updatePlant(updatedPlant);
+      onUpdate(updatedPlant);
+      setIsWaterConfirmOpen(false);
+      toast.success(t('plant.waterSuccess'));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getNextWateringDate = () => {
@@ -239,7 +244,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
             <Button variant="outline" onClick={() => setIsWaterConfirmOpen(false)}>
               {t('actions.cancel')}
             </Button>
-            <Button onClick={handleWater}>
+            <Button onClick={handleWatering}>
               {t('actions.confirm')}
             </Button>
           </div>
