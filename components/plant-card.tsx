@@ -77,6 +77,15 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
     }
   };
 
+  const handleDelete = () => {
+    if (!plant.id) {
+      toast.error(t('errors.generic'));
+      return;
+    }
+    onDelete(plant.id);
+    setIsDeleteConfirmOpen(false);
+  };
+
   const getNextWateringDate = () => {
     try {
       const lastWateredDate = plant.lastWatered 
@@ -282,7 +291,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
             <Button variant="outline" onClick={() => setIsDeleteConfirmOpen(false)}>
               {t('actions.cancel')}
             </Button>
-            <Button variant="destructive" onClick={() => onDelete(plant.id)}>
+            <Button variant="destructive" onClick={handleDelete}>
               {t('actions.delete')}
             </Button>
           </div>
