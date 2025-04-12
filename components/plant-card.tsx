@@ -62,12 +62,13 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
 
   const handleWatering = async () => {
     try {
+      const now = new Date();
       const updatedPlant: Plant = {
         ...plant,
-        lastWatered: new Date().toISOString(), // Convert to ISO string
+        lastWatered: now,
+        updatedAt: now
       };
-      await updatePlant(updatedPlant);
-      onUpdate(updatedPlant);
+      await onUpdate(updatedPlant);
       setIsWaterConfirmOpen(false);
       toast.success(t('plant.waterSuccess'));
     } catch (error) {
@@ -76,7 +77,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
   };
 
   const getNextWateringDate = () => {
-    const lastWatered = new Date(plant.lastWatered || plant.dateAdded);
+    const lastWatered = plant.lastWatered ? new Date(plant.lastWatered) : new Date(plant.createdAt || Date.now());
     const nextDate = new Date(lastWatered);
     nextDate.setDate(nextDate.getDate() + plant.wateringFrequency);
     return nextDate;
