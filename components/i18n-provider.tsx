@@ -2,11 +2,21 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const I18nContext = createContext({
-  locale: 'en',
-  setLocale: (locale: string) => {},
-  dir: 'ltr' as 'ltr' | 'rtl',
-});
+interface I18nContextType {
+  locale: string;
+  setLocale: (locale: string) => void;
+  dir: string;
+}
+
+export const I18nContext = createContext<I18nContextType | undefined>(undefined);
+
+export const useI18n = () => {
+  const context = useContext(I18nContext);
+  if (!context) {
+    throw new Error('useI18n must be used within an I18nProvider');
+  }
+  return context;
+};
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocale] = useState('en');
@@ -26,11 +36,15 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.dir = newLocale === 'ar' ? 'rtl' : 'ltr';
   };
 
+  const value = {
+    locale,
+    setLocale: handleSetLocale,
+    dir,
+  };
+
   return (
-    <I18nContext.Provider value={{ locale, setLocale: handleSetLocale, dir }}>
+    <I18nContext.Provider value={value}>
       {children}
     </I18nContext.Provider>
   );
 }
-
-export const useI18n = () => useContext(I18nContext);
