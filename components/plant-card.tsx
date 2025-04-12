@@ -62,7 +62,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
 
   const handleWatering = async () => {
     try {
-      const now = new Date();
+      const now = new Date().toISOString();
       const updatedPlant: Plant = {
         ...plant,
         lastWatered: now,
@@ -72,15 +72,36 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
       setIsWaterConfirmOpen(false);
       toast.success(t('plant.waterSuccess'));
     } catch (error) {
-      console.error(error);
+      console.error('Watering error:', error);
+      toast.error(t('errors.generic'));
     }
   };
 
   const getNextWateringDate = () => {
-    const lastWatered = plant.lastWatered ? new Date(plant.lastWatered) : new Date(plant.createdAt || Date.now());
-    const nextDate = new Date(lastWatered);
-    nextDate.setDate(nextDate.getDate() + plant.wateringFrequency);
-    return nextDate;
+    try {
+      const lastWateredDate = plant.lastWatered 
+        ? new Date(plant.lastWatered) 
+        : new Date(plant.createdAt || Date.now());
+      const nextDate = new Date(lastWateredDate);
+      nextDate.setDate(nextDate.getDate() + plant.wateringFrequency);
+      return nextDate.toLocaleDateString();
+    } catch (error) {
+      return new Date().toLocaleDateString();
+    }
+  };
+
+  const getLastWateredDisplay = () => {
+    try {
+      if (plant.lastWatered) {
+        return new Date(plant.lastWatered).toLocaleDateString();
+      }
+      if (plant.createdAt) {
+        return new Date(plant.createdAt).toLocaleDateString();
+      }
+      return new Date().toLocaleDateString();
+    } catch (error) {
+      return new Date().toLocaleDateString();
+    }
   };
 
   const formatWateringText = () => {
@@ -120,13 +141,13 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
           <div className="flex items-center gap-1" dir={dir}>
             <Calendar className="h-3 w-3 text-green-500 flex-shrink-0" />
             <span className="truncate">
-              {t('plant.lastWatered')}: {new Date(plant.lastWatered || plant.createdAt).toLocaleDateString()}
+              {t('plant.lastWatered')}: {getLastWateredDisplay()}
             </span>
           </div>
           <div className="flex items-center gap-1" dir={dir}>
             <Calendar className="h-3 w-3 text-orange-500 flex-shrink-0" />
             <span className="truncate">
-              {t('plant.nextWatering')}: {getNextWateringDate().toLocaleDateString()}
+              {t('plant.nextWatering')}: {getNextWateringDate()}
             </span>
           </div>
         </div>

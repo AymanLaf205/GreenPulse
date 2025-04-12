@@ -4,7 +4,7 @@ export interface Plant {
   wateringFrequency: number;
   sunlight: string;
   image: string;
-  lastWatered?: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
+  lastWatered?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
