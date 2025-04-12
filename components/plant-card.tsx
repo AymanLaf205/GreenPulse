@@ -176,7 +176,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
             <DialogTrigger asChild>
               <Button variant="outline" size="sm" className="text-xs px-2 h-8">
                 <Edit className="h-3 w-3 mr-1" />
-                {t('actions.edit')}
+                {t('plant.edit')}
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -248,9 +248,9 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
                   setIsEditing(false);
                   setErrors({});
                 }}>
-                  {t('actions.cancel')}
+                  {t('plant.cancel')}
                 </Button>
-                <Button onClick={handleUpdate}>{t('actions.save')}</Button>
+                <Button onClick={handleUpdate}>{t('plant.save')}</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

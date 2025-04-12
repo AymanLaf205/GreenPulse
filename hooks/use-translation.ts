@@ -1,34 +1,34 @@
 "use client";
 
+import { useCallback } from 'react';
 import { useI18n } from '@/components/i18n-provider';
-import en from '@/app/i18n/locales/en.json';
-import ar from '@/app/i18n/locales/ar.json';
+import type { Translations } from '@/types/translations';
+import en from '@/translations/en.json';
+import ar from '@/translations/ar.json';
 
-const translations = { en, ar };
-
-type InterpolationValues = {
-  [key: string]: string | number;
-};
+const translations: Record<string, Translations> = { en, ar };
 
 export function useTranslation() {
   const { locale } = useI18n();
-
-  return function t(key: string, interpolation?: InterpolationValues): string {
+  
+  const t = useCallback((key: string, params?: Record<string, any>) => {
     const keys = key.split('.');
-    let value = translations[locale as keyof typeof translations];
+    let value = translations[locale];
     
     for (const k of keys) {
-      if (value && typeof value === 'object') {
-        value = value[k as keyof typeof value];
-      }
+      value = value?.[k];
     }
 
-    if (typeof value === 'string' && interpolation) {
-      return Object.entries(interpolation).reduce((str, [key, val]) => {
-        return str.replace(`{{${key}}}`, String(val));
-      }, value);
+    if (typeof value !== 'string') {
+      return key;
     }
 
-    return value as string || key;
-  };
+    if (params) {
+      return value.replace(/\{(\w+)\}/g, (_, k) => params[k]?.toString() ?? '');
+    }
+
+    return value;
+  }, [locale]);
+
+  return t;
 }

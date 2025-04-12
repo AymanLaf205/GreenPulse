@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "جرين بلس",
+    "subtitle": "متتبع العناية بالنباتات",
+    "language": "اللغة"
+  },
+  "plant": {
+    "add": "إضافة نبات",
+    "edit": "تعديل النبات",
+    "name": "اسم النبات",
+    "namePlaceholder": "أدخل اسم النبات",
+    "wateringFrequency": "تكرار الري (أيام)",
+    "wateringPlaceholder": "أدخل عدد الأيام بين الري",
+    "sunlight": "احتياجات أشعة الشمس",
+    "sunlightPlaceholder": "اختر متطلبات أشعة الشمس",
+    "imageUrl": "رابط الصورة",
+    "imagePlaceholder": "أدخل رابط الصورة (اختياري)",
+    "waterNow": "اسقي الآن",
+    "waterConfirm": "هل تريد سقي هذا النبات؟",
+    "waterSuccess": "تم ري النبات بنجاح!",
+    "delete": "حذف",
+    "deleteConfirm": "هل تريد حذف هذا النبات؟",
+    "lastWatered": "آخر ري",
+    "nextWatering": "الري القادم",
+    "waterEvery": "الري كل {days} أيام",
+    "sunlightOptions": {
+      "brightDirect": "ضوء مباشر ساطع",
+      "brightIndirect": "ضوء غير مباشر ساطع",
+      "mediumLight": "ضوء متوسط",
+      "lowLight": "ضوء منخفض",
+      "shade": "ظل"
+    },
+    "validation": {
+      "nameRequired": "اسم النبات مطلوب",
+      "wateringRequired": "تكرار الري مطلوب",
+      "sunlightRequired": "متطلبات أشعة الشمس مطلوبة"
+    }
+  },
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "delete": "حذف"
+  },
+  "errors": {
+    "generic": "حدث خطأ ما"
+  }
+}
