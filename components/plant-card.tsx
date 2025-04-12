@@ -36,7 +36,7 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!editedPlant.name?.trim()) {
       newErrors.name = t('plant.validation.nameRequired');
     }
@@ -90,55 +90,56 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
   ];
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden h-full flex flex-col">
       <CardHeader className="relative p-0">
         <img
           src={plant.image || 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=500&q=80'}
           alt={plant.name}
-          className="w-full h-48 object-cover"
+          className="w-full h-32 object-cover"
         />
       </CardHeader>
-      <CardContent className="p-4">
-        <h3 className="text-lg font-semibold mb-2">{plant.name}</h3>
-        <div className="space-y-2">
-          <div className="flex items-center gap-2" dir={dir}>
-            <Droplet className="h-4 w-4 text-blue-500" />
-            <span className="text-sm">{formatWateringText()}</span>
+      <CardContent className="p-3 flex-grow">
+        <h3 className="text-base font-semibold mb-1 truncate" title={plant.name}>{plant.name}</h3>
+        <div className="space-y-1 text-xs">
+          <div className="flex items-center gap-1" dir={dir}>
+            <Droplet className="h-3 w-3 text-blue-500 flex-shrink-0" />
+            <span className="truncate">{formatWateringText()}</span>
           </div>
-          <div className="flex items-center gap-2" dir={dir}>
-            <Sun className="h-4 w-4 text-yellow-500" />
-            <span className="text-sm">
-              {t(`plant.sunlightOptions.${plant.sunlight}`)}
+          <div className="flex items-center gap-1" dir={dir}>
+            <Sun className="h-3 w-3 text-yellow-500 flex-shrink-0" />
+            <span className="truncate">
+              {plant.sunlight && t(`plant.sunlightOptions.${plant.sunlight}`)}
             </span>
           </div>
-          <div className="flex items-center gap-2" dir={dir}>
-            <Calendar className="h-4 w-4 text-green-500" />
-            <span className="text-sm">
+          <div className="flex items-center gap-1" dir={dir}>
+            <Calendar className="h-3 w-3 text-green-500 flex-shrink-0" />
+            <span className="truncate">
               {t('plant.lastWatered')}: {new Date(plant.lastWatered || plant.dateAdded).toLocaleDateString()}
             </span>
           </div>
-          <div className="flex items-center gap-2" dir={dir}>
-            <Calendar className="h-4 w-4 text-orange-500" />
-            <span className="text-sm">
+          <div className="flex items-center gap-1" dir={dir}>
+            <Calendar className="h-3 w-3 text-orange-500 flex-shrink-0" />
+            <span className="truncate">
               {t('plant.nextWatering')}: {getNextWateringDate().toLocaleDateString()}
             </span>
           </div>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between gap-2 p-4" dir={dir}>
+      <CardFooter className="flex justify-between gap-1 p-2 pt-0" dir={dir}>
         <Button
           variant="outline"
           size="sm"
+          className="text-xs px-2 h-8"
           onClick={() => setIsWaterConfirmOpen(true)}
         >
-          <Droplet className="h-4 w-4 mr-1" />
+          <Droplet className="h-3 w-3 mr-1" />
           {t('plant.waterNow')}
         </Button>
         <div className="flex gap-2">
           <Dialog open={isEditing} onOpenChange={setIsEditing}>
             <DialogTrigger asChild>
-              <Button variant="outline" size="sm">
-                <Edit className="h-4 w-4 mr-1" />
+              <Button variant="outline" size="sm" className="text-xs px-2 h-8">
+                <Edit className="h-3 w-3 mr-1" />
                 {t('actions.edit')}
               </Button>
             </DialogTrigger>
@@ -220,9 +221,10 @@ export function PlantCard({ plant, onUpdate, onDelete }: PlantCardProps) {
           <Button
             variant="destructive"
             size="sm"
+            className="text-xs px-2 h-8"
             onClick={() => setIsDeleteConfirmOpen(true)}
           >
-            <Trash2 className="h-4 w-4 mr-1" />
+            <Trash2 className="h-3 w-3 mr-1" />
             {t('plant.delete')}
           </Button>
         </div>

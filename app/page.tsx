@@ -10,6 +10,7 @@ import { useI18n } from '@/components/i18n-provider';
 import { Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/use-translation';
+import { Footer } from '@/components/footer';
 
 export default function Home() {
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -49,23 +50,34 @@ export default function Home() {
           <AddPlantDialog onAddPlant={(plant) => savePlants([...plants, plant])} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {plants.map((plant) => (
-            <PlantCard
-              key={plant.id}
-              plant={plant}
-              onUpdate={(updatedPlant) => {
-                const newPlants = plants.map((p) =>
-                  p.id === updatedPlant.id ? updatedPlant : p
-                );
-                savePlants(newPlants);
-              }}
-              onDelete={(id) => {
-                savePlants(plants.filter((p) => p.id !== id));
-              }}
-            />
-          ))}
-        </div>
+        {plants.length === 0 ? (
+          <div className="flex flex-col items-center justify-center min-h-[50vh]">
+            <Footer />
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {plants.map((plant) => (
+                <PlantCard
+                  key={plant.id}
+                  plant={plant}
+                  onUpdate={(updatedPlant) => {
+                    const newPlants = plants.map((p) =>
+                      p.id === updatedPlant.id ? updatedPlant : p
+                    );
+                    savePlants(newPlants);
+                  }}
+                  onDelete={(id) => {
+                    savePlants(plants.filter((p) => p.id !== id));
+                  }}
+                />
+              ))}
+            </div>
+            <div className="mt-12">
+              <Footer />
+            </div>
+          </>
+        )}
       </main>
     </div>
   );
